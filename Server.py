@@ -1,10 +1,11 @@
 import cherrypy
 import Root
+from Config import Config
 class Server:
     def __init__(self):
         cherrypy.config.update({
-            'server.socket_host': '192.168.1.242',
-            'server.socket_port': 88,
+            'server.socket_host': Config.SocketHost,
+            'server.socket_port': 9090,
             'server.socket_timeout': 500,
 
         })

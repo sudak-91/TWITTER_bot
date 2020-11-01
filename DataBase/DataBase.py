@@ -2,10 +2,11 @@ import sqlite3
 import sys
 import traceback
 from sqlite3 import Error
+from Config import Config
 
 def sql_connection():
     try:
-        con = sqlite3.connect("arduino.db")
+        con = sqlite3.connect(Config.DataPath)
         print("Нормес прошло. ДБ создано")
         return con
     except Error:
@@ -27,7 +28,7 @@ def create_user_device_table(con):
 def create_device_value_table(con):
     cursObj = con.cursor()
     try:
-        cursObj.execute('CREATE TABLE IF NOT EXISTS devicevalue (apiKey PRIMARY KEY NOT NULL, Key text NOT NULL, valueKey INTEGER)')
+        cursObj.execute('CREATE TABLE IF NOT EXISTS devicevalue (apiKey text PRIMARY KEY NOT NULL, Key text NOT NULL, valueKey INTEGER)')
         print("Table created")
         con.commit()
     except Error as er:
