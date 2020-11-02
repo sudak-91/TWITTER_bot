@@ -94,6 +94,8 @@ def get_key(con, apiKey):
         cursObj.execute(sql, (apiKey,))
         results = cursObj.fetchall()
         if (results != 0):
+            for r in results:
+                print("Значение = "+r)
             return results
         else:
             return -1
