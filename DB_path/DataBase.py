@@ -95,7 +95,7 @@ def get_key(con, apiKey):
         results = cursObj.fetchall()
         if (results != 0):
             for r in results:
-                print("Значение = "+r)
+                print("Значение = "+str(r))
             return results
         else:
             return -1
