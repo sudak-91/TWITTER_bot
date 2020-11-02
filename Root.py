@@ -31,11 +31,22 @@ class Root:
 
     @cherrypy.expose()
     @cherrypy.tools.json_in()
-    def postKey(selfself):
+    def postKey(self):
         json_string = cherrypy.request.json
         print(json_string["apiKey"])
         print(json_string["key"])
-        #db = DB_path.sql_connection()
-        #DB_path.add_device_to_table(db, json["apiKey"], json["Key"])
-        #db.close()
+        db = DataBase.sql_connection()
+        DataBase.add_device_to_table(db, json_string["apiKey"], json_string["key"])
+        db.close()
+        return("OK")
+
+    @cherrypy.expose()
+    @cherrypy.tools.json_in()
+    def registeruser(self):
+        json_string = cherrypy.request.json
+        print(json_string["apiKey"])
+        print(json_string["chatid"])
+        db = DataBase.sql_connection()
+        DataBase.add_device(db, json_string["apiKey"], json_string["chatid"])
+        db.close()
         return("OK")
