@@ -33,8 +33,8 @@ class Root:
     @cherrypy.tools.json_in()
     def postKey(selfself):
         json_string = cherrypy.request.json
-        print(json["apiKey"])
-        print(json["Key"])
+        print(json_string["apiKey"])
+        print(json_string["Key"])
         #db = DataBase.sql_connection()
         #DataBase.add_device_to_table(db, json["apiKey"], json["Key"])
         #db.close()
