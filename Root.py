@@ -27,11 +27,12 @@ class Root:
             return("FALSE")
             con.close()
         else:
-            for key in results:
+            lenght = len(results)
+            for k in range(lenght):
                 ##DataBase.update_value(con, json_string["apiKey"], key, json_string[key])
-                print(key)
-                k = key[0]
-                print(json_string[k])
+                print(results[k])
+                ff = results[k]
+                print(json_string[ff])
             con.close()
             return("OK")
 
