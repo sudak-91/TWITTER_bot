@@ -65,6 +65,6 @@ class Root:
     def check_querry_length(self):
         json_string = cherrypy.request.json
         db = DataBase.sql_connection()
-        length = DataBase.get_querry_length(db,json_string["apiKey"], json_string["Key"])
+        length = DataBase.get_querry_length(db,json_string["apiKey"], json_string["key"])
         db.close()
         return length

@@ -84,7 +84,7 @@ def update_value(con, apiKey, key, value):
     cursObj = con.cursor()
     try:
         sql =  f''' UPDATE devicevalue
-              SET value = {value} ,
+              SET valueKey = {value} ,
               WHERE apiKey = {apiKey}
               AND
               Key = {key}'''
