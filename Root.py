@@ -29,10 +29,7 @@ class Root:
         else:
 
             for raw in results:
-                ##DataBase.update_value(con, json_string["apiKey"], key, json_string[key])
-                print(raw[0])
-
-                print(json_string[raw[0]])
+                DataBase.update_value(con, json_string["apiKey"], raw[0], json_string[raw[0]])
             con.close()
             return("OK")
 
@@ -61,3 +58,13 @@ class Root:
         DataBase.add_device(db, json_string["apiKey"], json_string["chatid"])
         db.close()
         return("OK")
+
+
+    @cherrypy.expose()
+    @cherrypy.tool.json_in()
+    def check_querry_length(self):
+        json_string = cherrypy.request.json
+        db = DataBase.sql_connection()
+        length = DataBase.get_querry_length(db,json_string["apiKey"], json_string["Key"])
+        db.close()
+        return length

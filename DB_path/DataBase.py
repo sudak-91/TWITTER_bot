@@ -38,6 +38,20 @@ def create_device_value_table(con):
         exc_type, exc_value, exc_tb = sys.exc_info()
         print(traceback.format_exception(exc_type, exc_value, exc_tb))
 
+
+def create_query_table(con):
+    cursObj = con.cursor()
+    try:
+        cursObj.execute('CREATE TABLE IF NOT EXISTS query (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, apiKey text NOT NULL, Key text NOT NULL, value INTEGER)')
+        print("Table query created")
+        con.commit()
+    except Error as er:
+        print('SQLite error: %s' % (' '.join(er.args)))
+        print("Exception class is: ", er.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
+
 def add_device_to_table(con, apiKey, Key):
     cursObj = con.cursor()
     try:
@@ -100,6 +114,38 @@ def get_key(con, apiKey):
         else:
             return -1
 
+    except Error as er:
+        print('SQLite error: %s' % (' '.join(er.args)))
+        print("Exception class is: ", er.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
+
+
+def add_query_command(con, apiKey, Key, value):
+    cursObj = con.cursor()
+    try:
+        sql = '''
+        'INSERT INTO query (apiKey, Key, value) VALUES(?,?,?)'
+        '''
+        cursObj.execute(sql, [apiKey, Key, value])
+        con.commit()
+    except Error as er:
+        print('SQLite error: %s' % (' '.join(er.args)))
+        print("Exception class is: ", er.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))
+def get_querry_length(con, apiKey, Key):
+    cursObj = con.cursor()
+    try:
+        sql = '''
+        SELECT id from query WHERE apiKey = ? AND Key = ?
+        '''
+        cursObj.execute(sql,[apiKey, Key])
+        r = cursObj.fetchall()
+        length = len(r)
+        return length;
     except Error as er:
         print('SQLite error: %s' % (' '.join(er.args)))
         print("Exception class is: ", er.__class__)
