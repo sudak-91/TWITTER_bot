@@ -41,7 +41,7 @@ def create_device_value_table(con):
 def add_device_to_table(con, apiKey, Key):
     cursObj = con.cursor()
     try:
-        cursObj.execute('INSERT INTO devicevalue(apiKey, Key) VALUES(?,?)', [apiKey, Key,])
+        cursObj.execute('INSERT INTO devicevalue(apiKey, Key) VALUES(?,?)', [apiKey, Key])
         con.commit()
         print("Device add")
     except Error as er:
