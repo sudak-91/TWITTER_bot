@@ -1,6 +1,8 @@
 import cherrypy
 import json
 from Config import Config
+from DataBase import DataBase
+
 class Root:
     @cherrypy.expose
     @cherrypy.tools.json_out()
@@ -20,9 +22,20 @@ class Root:
         print("Есть контакт");
 
         json_string = cherrypy.request.json
-        print(json_string["ApiKey"])
+
         #for dD in json_string:
         #    print (dD["key"])
         #    print (dD["value"])
         print(json_string)
+        return("OK")
+
+    @cherrypy.expose()
+    @cherrypy.tools.json_in()
+    def postKey(selfself):
+        json_string = cherrypy.request.json
+        print(json["apiKey"])
+        print(json["Key"])
+        #db = DataBase.sql_connection()
+        #DataBase.add_device_to_table(db, json["apiKey"], json["Key"])
+        #db.close()
         return("OK")
