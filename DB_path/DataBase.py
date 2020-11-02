@@ -84,12 +84,12 @@ def update_value(con, apiKey, key, value):
     cursObj = con.cursor()
     try:
         sql =  f''' UPDATE devicevalue
-              SET valueKey = {value} ,
-              WHERE apiKey = {apiKey}
+              SET valueKey = ? ,
+              WHERE apiKey = ?
               AND
-              Key = {key}'''
+              Key = ?'''
 
-        cursObj.execute(sql)
+        cursObj.execute(sql,[value, apiKey, key])
         con.commit()
         print("Value update")
     except Error as er:
