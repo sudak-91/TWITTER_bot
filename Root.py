@@ -30,9 +30,9 @@ class Root:
 
             for raw in results:
                 ##DataBase.update_value(con, json_string["apiKey"], key, json_string[key])
-                print(raw)
-                ff = results[k]
-                print(json_string[ff])
+                print(raw[0])
+
+                print(json_string[raw[0]])
             con.close()
             return("OK")
 

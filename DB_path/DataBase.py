@@ -55,7 +55,7 @@ def add_device_to_table(con, apiKey, Key):
 def add_device(con, apiKey, chatid):
     cursObj = con.cursor()
     try:
-        cursObj.execute('INSERT INTO userdevices(apiKey, chatid) VALUES(?,?)', [apiKey, chatid,])
+        cursObj.execute('INSERT INTO userdevices(apiKey, chatid) VALUES(?,?)', [apiKey, chatid])
         con.commit()
         print("Device add")
     except Error as er:
