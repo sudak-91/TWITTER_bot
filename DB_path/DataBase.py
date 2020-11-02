@@ -16,7 +16,7 @@ def create_user_device_table(con):
     cursObj = con.cursor()
     try:
         cursObj.execute('CREATE TABLE IF NOT EXISTS userdevices (id INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, apiKey text NOT NULL, chatid INTEGER NOT NULL)')
-        print("Table created")
+        print("Table userdevices created")
         con.commit()
     except Error as er:
         print('SQLite error: %s' % (' '.join(er.args)))
@@ -29,7 +29,7 @@ def create_device_value_table(con):
     cursObj = con.cursor()
     try:
         cursObj.execute('CREATE TABLE IF NOT EXISTS devicevalue (apiKey text PRIMARY KEY NOT NULL, Key text NOT NULL, valueKey INTEGER)')
-        print("Table created")
+        print("Table devicevalue created")
         con.commit()
     except Error as er:
         print('SQLite error: %s' % (' '.join(er.args)))

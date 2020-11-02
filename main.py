@@ -9,10 +9,14 @@ from pip._vendor.distlib.compat import raw_input
 import socket
 from cherrypy import tools
 import Server
-import DataBase
+from DB_path import DataBase
 
 
 if __name__ == '__main__':
+    con = DataBase.sql_connection()
+    DataBase.create_user_device_table(con)
+    DataBase.create_device_value_table(con)
+    con.close()
     Serverlocal = Server.Server()
     Serverlocal.Start()
 

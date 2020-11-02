@@ -1,7 +1,7 @@
 import cherrypy
 import json
 from Config import Config
-from DataBase import DataBase
+from DB_path import DataBase
 
 class Root:
     @cherrypy.expose
@@ -35,7 +35,7 @@ class Root:
         json_string = cherrypy.request.json
         print(json_string["apiKey"])
         print(json_string["key"])
-        #db = DataBase.sql_connection()
-        #DataBase.add_device_to_table(db, json["apiKey"], json["Key"])
+        #db = DB_path.sql_connection()
+        #DB_path.add_device_to_table(db, json["apiKey"], json["Key"])
         #db.close()
         return("OK")
