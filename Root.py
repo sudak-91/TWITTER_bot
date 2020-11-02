@@ -61,7 +61,7 @@ class Root:
 
 
     @cherrypy.expose()
-    @cherrypy.tool.json_in()
+    @cherrypy.tools.json_in()
     def check_querry_length(self):
         json_string = cherrypy.request.json
         db = DataBase.sql_connection()
