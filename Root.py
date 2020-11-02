@@ -1,5 +1,4 @@
 import cherrypy
-import json
 from Config import Config
 from DB_path import DataBase
 
@@ -19,15 +18,24 @@ class Root:
     @cherrypy.expose
     @cherrypy.tools.json_in()
     def senddata(self):
-        print("Есть контакт");
-
+        print("Есть контакт")
+        con = DataBase.sql_connection()
         json_string = cherrypy.request.json
+        results = DataBase.get_key(con, json_string["apiKey"])
+        if (results== -1):
+            return("FALSE")
+            con.close()
+        else:
+            for key in results:
+                DataBase.update_value(con, json_string["apiKey"], key, json_string[key])
+            con.close()
+            return("OK")
+
+
 
         #for dD in json_string:
         #    print (dD["key"])
         #    print (dD["value"])
-        print(json_string)
-        return("OK")
 
     @cherrypy.expose()
     @cherrypy.tools.json_in()
