@@ -16,6 +16,7 @@ if __name__ == '__main__':
     con = DataBase.sql_connection()
     DataBase.create_user_device_table(con)
     DataBase.create_device_value_table(con)
+    DataBase.create_query_table(con)
     con.close()
     Serverlocal = Server.Server()
     Serverlocal.Start()
