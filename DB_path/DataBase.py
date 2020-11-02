@@ -87,7 +87,7 @@ def update_value(con, apiKey, key, value):
         print(key)
         print(value)
         sql =''' UPDATE devicevalue
-              SET valueKey = ? ,
+              SET valueKey = ? 
               WHERE apiKey = ?
               AND
               Key = ?'''
