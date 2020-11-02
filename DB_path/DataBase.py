@@ -83,11 +83,14 @@ def add_device(con, apiKey, chatid):
 def update_value(con, apiKey, key, value):
     cursObj = con.cursor()
     try:
+        print(apiKey)
+        print(key)
+        print(value)
         sql =''' UPDATE devicevalue
               SET valueKey = ? ,
-              WHERE apiKey LIKE ?
+              WHERE apiKey = ?
               AND
-              Key LIKE ?'''
+              Key = ?'''
 
         cursObj.execute(sql, [value, apiKey, key])
         con.commit()
