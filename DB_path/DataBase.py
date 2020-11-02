@@ -139,13 +139,15 @@ def add_query_command(con, apiKey, Key, value):
         print('SQLite traceback: ')
         exc_type, exc_value, exc_tb = sys.exc_info()
         print(traceback.format_exception(exc_type, exc_value, exc_tb))
+
+
 def get_querry_length(con, apiKey, Key):
     cursObj = con.cursor()
     try:
         sql = '''
         SELECT id from query WHERE apiKey = ? AND Key = ?
         '''
-        cursObj.execute(sql,[apiKey, Key])
+        cursObj.execute(sql, [apiKey, Key])
         r = cursObj.fetchall()
         length = len(r)
         return length;
