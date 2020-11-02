@@ -18,24 +18,25 @@ class Root:
     @cherrypy.expose
     @cherrypy.tools.json_in()
     def senddata(self):
-        print("Есть контакт")
         con = DataBase.sql_connection()
         json_string = cherrypy.request.json
         results = DataBase.get_key(con, json_string["apiKey"])
+        print(json_string["apiKey"])
+
         if (results== -1):
             return("FALSE")
             con.close()
         else:
             for key in results:
-                DataBase.update_value(con, json_string["apiKey"], key, json_string[key])
+                ##DataBase.update_value(con, json_string["apiKey"], key, json_string[key])
+                print(key)
+                print(json_string[key])
             con.close()
             return("OK")
 
 
 
-        #for dD in json_string:
-        #    print (dD["key"])
-        #    print (dD["value"])
+
 
     @cherrypy.expose()
     @cherrypy.tools.json_in()
