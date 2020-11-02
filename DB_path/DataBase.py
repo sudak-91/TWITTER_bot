@@ -83,7 +83,7 @@ def add_device(con, apiKey, chatid):
 def update_value(con, apiKey, key, value):
     cursObj = con.cursor()
     try:
-        sql =  f''' UPDATE devicevalue
+        sql =''' UPDATE devicevalue
               SET valueKey = ? ,
               WHERE apiKey = ?
               AND
