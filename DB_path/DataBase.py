@@ -89,7 +89,7 @@ def update_value(con, apiKey, key, value):
               AND
               Key = ?'''
 
-        cursObj.execute(sql,[value, apiKey, key])
+        cursObj.execute(sql, [value, apiKey, key])
         con.commit()
         print("Value update")
     except Error as er:

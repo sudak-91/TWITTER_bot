@@ -29,6 +29,8 @@ class Root:
         else:
 
             for raw in results:
+                print(raw[0])
+                print(json_string[raw[0]])
                 DataBase.update_value(con, json_string["apiKey"], raw[0], json_string[raw[0]])
             con.close()
             return("OK")
