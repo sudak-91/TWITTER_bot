@@ -85,9 +85,9 @@ def update_value(con, apiKey, key, value):
     try:
         sql =''' UPDATE devicevalue
               SET valueKey = ? ,
-              WHERE apiKey = ?
+              WHERE apiKey LIKE ?
               AND
-              Key = ?'''
+              Key LIKE ?'''
 
         cursObj.execute(sql, [value, apiKey, key])
         con.commit()
