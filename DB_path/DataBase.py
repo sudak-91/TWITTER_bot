@@ -166,7 +166,7 @@ def get_command(con, apiKey):
         apiKey =? 
         '''
         cursObj.execute(sql, [apiKey])
-        r = cursObj.fetchall
+        r = cursObj.fetchall()
         for data in r:
             print(data)
         print(r)
