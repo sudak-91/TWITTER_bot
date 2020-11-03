@@ -167,6 +167,8 @@ def get_command(con, apiKey):
         '''
         cursObj.execute(sql, [apiKey])
         r = cursObj.fetchall
+        for data in r:
+            print(data)
         print(r)
     except Error as er:
         print('SQLite error: %s' % (' '.join(er.args)))
