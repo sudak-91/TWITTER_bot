@@ -72,4 +72,4 @@ class Root:
         length = DataBase.get_querry_length(db, json_string["apiKey"], json_string["key"])
         db.close()
         print(length)
-        return length
+        return str(length)
