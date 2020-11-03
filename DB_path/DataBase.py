@@ -170,6 +170,7 @@ def get_command(con, apiKey):
         for data in r:
             print(data)
         print(r)
+        return r
     except Error as er:
         print('SQLite error: %s' % (' '.join(er.args)))
         print("Exception class is: ", er.__class__)
