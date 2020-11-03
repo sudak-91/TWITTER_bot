@@ -6,14 +6,11 @@ class Root:
     @cherrypy.expose
     @cherrypy.tools.json_out()
     def index(self, key):
-        if(key == Config.key):
-            print("Config = 42")
-            d = dict(Key=key)
-            return(d)
-            if(key == ""):
-                print("Ну норм")
-            else:
-                raise cherrypy.HTTPError(503)
+        con = DataBase.sql_connection()
+        DataBase.get_command(con, key)
+        d = ({'Key': key})
+        return(d)
+
 
     @cherrypy.expose
     @cherrypy.tools.json_in()
@@ -73,3 +70,14 @@ class Root:
         db.close()
         print(length)
         return str(length)
+
+    @cherrypy.expose()
+    @cherrypy.tools.json_in()
+    def add_command(self):
+        json_string = cherrypy.request.json
+        apiKey = json_string["apiKey"]
+        Key = json_string["Key"]
+        value = json_string["value"]
+        db = DataBase.sql_connection()
+        DataBase.add_query_command(db, apiKey,Key,value)
+        return ("ok")
