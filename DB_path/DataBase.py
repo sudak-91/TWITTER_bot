@@ -177,3 +177,18 @@ def get_command(con, apiKey):
         print('SQLite traceback: ')
         exc_type, exc_value, exc_tb = sys.exc_info()
         print(traceback.format_exception(exc_type, exc_value, exc_tb))
+def delete_command(con, id):
+    cursObj = con.cursor()
+    try:
+        sql = '''
+           DELETE from query WHERE
+           id =? 
+           '''
+        cursObj.execute(sql, [id])
+        con.commit()
+    except Error as er:
+        print('SQLite error: %s' % (' '.join(er.args)))
+        print("Exception class is: ", er.__class__)
+        print('SQLite traceback: ')
+        exc_type, exc_value, exc_tb = sys.exc_info()
+        print(traceback.format_exception(exc_type, exc_value, exc_tb))

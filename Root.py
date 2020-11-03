@@ -12,9 +12,11 @@ class Root:
         d.update(apiKey = key)
         if len(r)>0:
             for data in r:
+                DataBase.delete_command(con, data[0])
                 key = str(data[1])
                 value = data[2]
                 d.update({key:value})
+        con.close()
         return(d)
 
 
