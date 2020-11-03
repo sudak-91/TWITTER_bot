@@ -10,10 +10,11 @@ class Root:
         r = DataBase.get_command(con, key)
         d = dict()
         d.update(apiKey = key)
-        for data in r:
-            key = str(data[1])
-            value = data[2]
-            d.update({key:value})
+        if len(r)>0:
+            for data in r:
+                key = str(data[1])
+                value = data[2]
+                d.update({key:value})
         return(d)
 
 
