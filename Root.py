@@ -7,8 +7,13 @@ class Root:
     @cherrypy.tools.json_out()
     def index(self, key):
         con = DataBase.sql_connection()
-        DataBase.get_command(con, key)
-        d = ({'Key': key})
+        r = DataBase.get_command(con, key)
+        d = dict()
+        d.update(apiKey = key)
+        for data in r:
+            key = str(data[1])
+            value = data[2]
+            d.update({key:value})
         return(d)
 
 
