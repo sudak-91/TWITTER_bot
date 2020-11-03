@@ -80,4 +80,5 @@ class Root:
         value = json_string["value"]
         db = DataBase.sql_connection()
         DataBase.add_query_command(db, apiKey,Key,value)
+        db.close()
         return ("ok")

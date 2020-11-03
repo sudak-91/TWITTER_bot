@@ -129,7 +129,7 @@ def add_query_command(con, apiKey, Key, value):
     cursObj = con.cursor()
     try:
         sql = '''
-        'INSERT INTO query (apiKey, Key, value) VALUES(?,?,?)'
+        INSERT INTO query (apiKey, Key, value) VALUES(?,?,?)
         '''
         cursObj.execute(sql, [apiKey, Key, value])
         con.commit()
