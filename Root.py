@@ -71,4 +71,5 @@ class Root:
         db = DataBase.sql_connection()
         length = DataBase.get_querry_length(db, json_string["apiKey"], json_string["key"])
         db.close()
+        print(length)
         return length
